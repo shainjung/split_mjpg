@@ -50,9 +50,11 @@ while byte != b"":
 		if byte == b'\xd9':
 			b1 = f.read(1)
 			b2 = f.read(1)
-			f.seek(-2, 1)
+			b3 = f.read(1)
+			b4 = f.read(1)
+			f.seek(-4, 1)
 			
-			if b1 == b'\xff' and b2 == b'\xd8':
+			if b1 == b'\xff' and b2 == b'\xd8' and b3 == b'\xff' and b4 == b'\xe0':
 				# reopen file
 				fo.close()
 				fo=open_next_jpg_file()
